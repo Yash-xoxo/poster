@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fan Art Collection Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0a0c0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .upload-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .upload-btn {
+            display: inline-block;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(255, 126, 95, 0.4);
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 126, 95, 0.6);
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .poster-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .poster-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .poster-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .poster-info {
+            padding: 20px;
+        }
+        
+        .poster-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #feb47b;
+        }
+        
+        .poster-artist {
+            color: #a0a0c0;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .poster-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: #d0d0e0;
+        }
+        
+        .poster-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #a0a0c0;
+        }
+        
+        .price {
+            color: #4cd137;
+            font-weight: bold;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: #1a1a2e;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .upload-form h2 {
+            margin-bottom: 20px;
+            color: #feb47b;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #a0a0c0;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #feb47b;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 126, 95, 0.6);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #a0a0c0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fan Art Collection</h1>
+            <p class="subtitle">Discover amazing fan-created artwork from your favorite movies, games, and shows. A celebration of creativity from talented artists around the world.</p>
+        </header>
+        
+        <section class="upload-section">
+            <button class="upload-btn" id="openUploadModal">
+                <i class="fas fa-cloud-upload-alt"></i> Upload Your Fan Art
+            </button>
+        </section>
+        
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Artwork</button>
+            <button class="filter-btn" data-filter="movies">Movies</button>
+            <button class="filter-btn" data-filter="games">Video Games</button>
+            <button class="filter-btn" data-filter="anime">Anime</button>
+            <button class="filter-btn" data-filter="tv">TV Shows</button>
+            <button class="filter-btn" data-filter="comics">Comics</button>
+        </div>
+        
+        <div class="gallery" id="gallery">
+            <!-- Poster cards will be generated here -->
+        </div>
+        
+        <footer>
+            <p>Fan Art Collection &copy; 2023 | All artwork rights reserved to their respective creators</p>
+        </footer>
+    </div>
+    
+    <!-- Upload Modal -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="upload-form">
+                <h2>Upload Your Fan Art</h2>
+                <form id="fanArtForm">
+                    <div class="form-group">
+                        <label for="artTitle">Artwork Title</label>
+                        <input type="text" id="artTitle" class="form-control" placeholder="Enter a title for your artwork" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="artistName">Artist Name</label>
+                        <input type="text" id="artistName" class="form-control" placeholder="Your name or artist alias" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="artCategory">Category</label>
+                        <select id="artCategory" class="form-control" required>
+                            <option value="">Select a category</option>
+                            <option value="movies">Movies</option>
+                            <option value="games">Video Games</option>
+                            <option value="anime">Anime</option>
+                            <option value="tv">TV Shows</option>
+                            <option value="comics">Comics</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="artDescription">Description</label>
+                        <textarea id="artDescription" class="form-control" placeholder="Describe your artwork, inspiration, and techniques used" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="artImage">Upload Image</label>
+                        <input type="file" id="artImage" class="form-control" accept="image/*" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Upload Artwork</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample fan art data
+        const fanArtData = [
+            {
+                id: 1,
+                title: "Cyberpunk Dreams",
+                artist: "NeoCanvas",
+                category: "games",
+                description: "A reimagining of Night City from Cyberpunk 2077 with a vibrant neon aesthetic.",
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$29.99",
+                likes: 142
+            },
+            {
+                id: 2,
+                title: "Mandalorian Legacy",
+                artist: "StarSketch",
+                category: "tv",
+                description: "Din Djarin and Grogu in a dramatic pose against Tatooine's twin suns.",
+                image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$34.99",
+                likes: 218
+            },
+            {
+                id: 3,
+                title: "Spirit Blossom",
+                artist: "AnimeDreamer",
+                category: "anime",
+                description: "Original character inspired by League of Legends' Spirit Blossom skin line.",
+                image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$27.99",
+                likes: 189
+            },
+            {
+                id: 4,
+                title: "Gotham Knights",
+                artist: "ComicInk",
+                category: "comics",
+                description: "The Batman family assembled on a Gotham City rooftop at dusk.",
+                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$32.99",
+                likes: 167
+            },
+            {
+                id: 5,
+                title: "Wizarding World",
+                artist: "MagicBrush",
+                category: "movies",
+                description: "Hogwarts Castle under the northern lights with flying broomsticks in the foreground.",
+                image: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$39.99",
+                likes: 254
+            },
+            {
+                id: 6,
+                title: "Elden Ring Legends",
+                artist: "FantasyForge",
+                category: "games",
+                description: "The Tarnished facing Malenia, Blade of Miquella in the Haligtree.",
+                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$36.99",
+                likes: 198
+            },
+            {
+                id: 7,
+                title: "Anime Fusion",
+                artist: "KawaiiCanvas",
+                category: "anime",
+                description: "Crossover artwork featuring characters from Demon Slayer and Jujutsu Kaisen.",
+                image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$24.99",
+                likes: 176
+            },
+            {
+                id: 8,
+                title: "Marvel Universe",
+                artist: "HeroicArts",
+                category: "movies",
+                description: "Avengers assemble in a dynamic action pose against a New York City backdrop.",
+                image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                price: "$42.99",
+                likes: 312
+            }
+        ];
+
+        // DOM elements
+        const gallery = document.getElementById('gallery');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const uploadModal = document.getElementById('uploadModal');
+        const openUploadModal = document.getElementById('openUploadModal');
+        const closeModal = document.getElementById('closeModal');
+        const fanArtForm = document.getElementById('fanArtForm');
+
+        // Display fan art in gallery
+        function displayFanArt(artworks) {
+            gallery.innerHTML = '';
+            
+            artworks.forEach(art => {
+                const card = document.createElement('div');
+                card.className = 'poster-card';
+                card.setAttribute('data-category', art.category);
+                
+                card.innerHTML = `
+                    <img src="${art.image}" alt="${art.title}" class="poster-image">
+                    <div class="poster-info">
+                        <h3 class="poster-title">${art.title}</h3>
+                        <p class="poster-artist">by ${art.artist}</p>
+                        <p class="poster-description">${art.description}</p>
+                        <div class="poster-meta">
+                            <span class="price">${art.price}</span>
+                            <span><i class="fas fa-heart"></i> ${art.likes}</span>
+                        </div>
+                    </div>
+                `;
+                
+                gallery.appendChild(card);
+            });
+        }
+
+        // Filter artwork by category
+        function filterArtwork(category) {
+            if (category === 'all') {
+                displayFanArt(fanArtData);
+            } else {
+                const filteredArt = fanArtData.filter(art => art.category === category);
+                displayFanArt(filteredArt);
+            }
+        }
+
+        // Initialize gallery with all artwork
+        displayFanArt(fanArtData);
+
+        // Filter button event listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Filter artwork
+                filterArtwork(btn.getAttribute('data-filter'));
+            });
+        });
+
+        // Modal functionality
+        openUploadModal.addEventListener('click', () => {
+            uploadModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            uploadModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === uploadModal) {
+                uploadModal.style.display = 'none';
+            }
+        });
+
+        // Form submission
+        fanArtForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real application, you would upload the image to a server
+            // For this demo, we'll just show an alert and close the modal
+            alert('Your fan art has been uploaded successfully! It will appear in the gallery after review.');
+            uploadModal.style.display = 'none';
+            fanArtForm.reset();
+        });
+    </script>
+</body>
+</html>

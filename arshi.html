@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>s an Architect/Designer - Poster Shop</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #0f4c75 0%, #3282b8 100%);
+            color: white;
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ff7e5f;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.4);
+        }
+        
+        .cta-button:hover {
+            background-color: #ff6b47;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 126, 95, 0.6);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #0f4c75, #3282b8);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-left: 4px solid #3282b8;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            color: #0f4c75;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* Specialization Section */
+        .specialization-section {
+            background-color: #e8f0f7;
+        }
+        
+        .specialization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .specialty-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .specialty-icon {
+            font-size: 2.5rem;
+            color: #0f4c75;
+            margin-bottom: 15px;
+        }
+        
+        /* Commission Section */
+        .commission-section {
+            background-color: #f0f7ff;
+        }
+        
+        .commission-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .commission-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .commission-visual {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .commission-breakdown {
+            margin-top: 20px;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #0f4c75;
+        }
+        
+        /* How It Works Section */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0f4c75, #3282b8);
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        /* Opportunities Section */
+        .opportunities-section {
+            background-color: #1b262c;
+            color: white;
+        }
+        
+        .opportunities-section .section-title {
+            color: white;
+        }
+        
+        .opportunities-section .section-title:after {
+            background: linear-gradient(to right, #ff7e5f, #ffa726);
+        }
+        
+        .opportunity-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .opportunity-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .opportunity-card h3 {
+            margin-bottom: 15px;
+            color: #ffa726;
+        }
+        
+        /* Portfolio Showcase */
+        .portfolio-section {
+            background-color: #e8f0f7;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .portfolio-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .portfolio-image {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #0f4c75;
+        }
+        
+        .portfolio-content {
+            padding: 20px;
+        }
+        
+        .portfolio-content h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background-color: white;
+        }
+        
+        .application-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #0f4c75;
+            box-shadow: 0 0 0 2px rgba(15, 76, 117, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #0f4c75, #3282b8);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(15, 76, 117, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1b262c;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .commission-content {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>For Architects & Designers</h1>
+            <p>Transform your architectural visions and design expertise into stunning posters. Join our platform to showcase your technical drawings, 3D renderings, and design concepts to an audience that appreciates precision and aesthetics.</p>
+            <a href="#application" class="cta-button">Apply Now</a>
+        </div>
+    </header>
+
+    <!-- Benefits Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Why Architects & Designers Thrive With Us</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏗️</div>
+                    <h3>Showcase Technical Excellence</h3>
+                    <p>Display your precision drawings, detailed plans, and architectural visualizations to an audience that values technical skill.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💼</div>
+                    <h3>Professional Portfolio Extension</h3>
+                    <p>Expand your professional reach beyond traditional clients to design enthusiasts, students, and collectors.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📐</div>
+                    <h3>Leverage Existing Work</h3>
+                    <p>Monetize your existing architectural drawings, 3D models, and design concepts without additional client work.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌐</div>
+                    <h3>Industry Recognition</h3>
+                    <p>Gain visibility among architecture and design communities, potentially leading to new professional opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialization Section -->
+    <section class="specialization-section">
+        <div class="container">
+            <h2 class="section-title">Design Specializations We Value</h2>
+            <div class="specialization-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon">📊</div>
+                    <h3>Architectural Drawings</h3>
+                    <p>Floor plans, elevations, sections, and technical drawings with aesthetic appeal.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">🏛️</div>
+                    <h3>3D Visualizations</h3>
+                    <p>Rendered perspectives, interior views, and architectural fly-throughs.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">✏️</div>
+                    <h3>Concept Sketches</h3>
+                    <p>Hand-drawn or digital sketches that capture the design process.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">🌇</div>
+                    <h3>Urban Design</h3>
+                    <p>Cityscapes, master plans, and urban planning diagrams.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">🛋️</div>
+                    <h3>Interior Design</h3>
+                    <p>Room layouts, furniture designs, and material palettes.</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">📝</div>
+                    <h3>Design Theory</h3>
+                    <p>Architectural diagrams, design process illustrations, and theoretical concepts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commission Section -->
+    <section class="commission-section">
+        <div class="container">
+            <h2 class="section-title">Architect-Focused Revenue Model</h2>
+            <div class="commission-content">
+                <div class="commission-text">
+                    <h3>Premium Pricing for Technical Art</h3>
+                    <p>We recognize the specialized skill and time investment required for architectural work. Your technical posters command premium prices with our professional audience.</p>
+                    <p>For every architectural poster sold featuring your work, you'll receive 40% of the sale price, with potential for higher commissions on limited edition prints.</p>
+                    <div class="commission-breakdown">
+                        <div class="breakdown-item">
+                            <span>Architectural Poster Price:</span>
+                            <span>$45.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Your Commission (40%):</span>
+                            <span>$18.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Company Share (60%):</span>
+                            <span>$27.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Your Earnings per Sale:</span>
+                            <span>$18.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="commission-visual">
+                    <h3>Architectural Earnings Calculator</h3>
+                    <p>Calculate your potential revenue based on your specialized work:</p>
+                    <div class="form-group">
+                        <label for="designSales">Number of Posters Sold:</label>
+                        <input type="number" id="designSales" class="form-control" min="0" value="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="designEarnings">Your Estimated Earnings:</label>
+                        <input type="text" id="designEarnings" class="form-control" value="$180.00" readonly>
+                    </div>
+                    <p><small>Based on an average architectural poster price of $45.00</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">The Architect Partnership Process</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Submit Your Portfolio</h3>
+                    <p>Share your architectural work, technical drawings, or design concepts for review.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Quality Assessment</h3>
+                    <p>Our architecture-specialized team evaluates the technical quality and market appeal of your work.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Poster Preparation</h3>
+                    <p>We professionally format your drawings or visualizations for optimal print quality.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Launch & Promotion</h3>
+                    <p>Your architectural posters are featured in our dedicated design category with targeted marketing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Showcase -->
+    <section class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">Architectural Poster Examples</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">📐</div>
+                    <div class="portfolio-content">
+                        <h3>Technical Drawings Series</h3>
+                        <p>Detailed architectural plans and sections that appeal to design professionals and students.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">🏢</div>
+                    <div class="portfolio-content">
+                        <h3>Urban Skylines</h3>
+                        <p>Architectural renderings of cityscapes and landmark buildings.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">✏️</div>
+                    <div class="portfolio-content">
+                        <h3>Concept Sketches</h3>
+                        <p>Early design ideas and architectural concepts that reveal the creative process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunities Section -->
+    <section class="opportunities-section">
+        <div class="container">
+            <h2 class="section-title">Professional Growth Opportunities</h2>
+            <div class="opportunity-cards">
+                <div class="opportunity-card">
+                    <h3>Featured Architect Program</h3>
+                    <p>Top architectural contributors receive spotlight features in our architecture-focused marketing campaigns.</p>
+                </div>
+                <div class="opportunity-card">
+                    <h3>Design Commission Projects</h3>
+                    <p>Get approached for custom architectural visualization projects and design collaborations.</p>
+                </div>
+                <div class="opportunity-card">
+                    <h3>Educational Content Creation</h3>
+                    <p>Opportunities to create educational content about architectural design processes and techniques.</p>
+                </div>
+                <div class="opportunity-card">
+                    <h3>Professional Networking</h3>
+                    <p>Connect with other architecture and design professionals through our exclusive community events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section id="application" class="form-section">
+        <div class="container">
+            <h2 class="section-title">Architect & Designer Application</h2>
+            <div class="application-form">
+                <form id="architectApplication">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Firm/Company (Optional)</label>
+                            <input type="text" id="company" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Professional Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialization">Primary Specialization</label>
+                        <select id="specialization" class="form-control" required>
+                            <option value="">Select your specialization</option>
+                            <option value="architecture">Architecture</option>
+                            <option value="interior-design">Interior Design</option>
+                            <option value="urban-design">Urban Design</option>
+                            <option value="landscape-architecture">Landscape Architecture</option>
+                            <option value="other">Other Design Field</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="portfolio">Portfolio Link</label>
+                        <input type="url" id="portfolio" class="form-control" placeholder="Website, Behance, LinkedIn, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="workTypes">Types of Work You'd Like to Share</label>
+                        <textarea id="workTypes" class="form-control" placeholder="e.g., Technical drawings, 3D renderings, concept sketches, floor plans..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Professional Background</label>
+                        <textarea id="experience" class="form-control" placeholder="Tell us about your architectural/design experience, education, and notable projects..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 Poster Shop. All rights reserved.</p>
+            <p>Questions? Email our architecture team at architects@postershop.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Commission Calculator
+        document.getElementById('designSales').addEventListener('input', function() {
+            const sales = parseInt(this.value) || 0;
+            const earnings = sales * 18; // $18 per sale (40% of $45)
+            document.getElementById('designEarnings').value = '$' + earnings.toFixed(2);
+        });
+
+        // Form Submission
+        document.getElementById('architectApplication').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your application! Our architecture team will review your portfolio and get back to you within 5-7 business days.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

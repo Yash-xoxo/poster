@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join as an Artist - Poster Shop</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: #6a11cb;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        /* Commission Section */
+        .commission-section {
+            background-color: #f0f7ff;
+        }
+
+        .commission-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .commission-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .commission-visual {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .commission-breakdown {
+            margin-top: 20px;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #6a11cb;
+        }
+
+        /* How It Works Section */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Opportunities Section */
+        .opportunities-section {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .opportunities-section .section-title {
+            color: white;
+        }
+
+        .opportunities-section .section-title:after {
+            background: linear-gradient(to right, #ff6b6b, #ffa726);
+        }
+
+        .opportunity-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .opportunity-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .opportunity-card h3 {
+            margin-bottom: 15px;
+            color: #ffa726;
+        }
+
+        /* Form Section */
+        .form-section {
+            background-color: white;
+        }
+
+        .application-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .commission-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Join Our Creative Community</h1>
+            <p>Showcase your artistic talent to a global audience and earn from your creations. As an artist with our poster shop, you'll receive 40% commission on every sale and gain access to exclusive opportunities.</p>
+            <a href="#application" class="cta-button">Apply Now</a>
+        </div>
+    </header>
+
+    <!-- Benefits Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Why Join as an Artist?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Generous Commission</h3>
+                    <p>Earn 40% of every sale - one of the highest rates in the industry for artists.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌎</div>
+                    <h3>Global Exposure</h3>
+                    <p>Reach customers worldwide without the hassle of printing, shipping, or customer service.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎨</div>
+                    <h3>Creative Freedom</h3>
+                    <p>Create what you love - we welcome diverse artistic styles and subjects.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>Growth Opportunities</h3>
+                    <p>Get featured in our marketing campaigns and considered for commissioned work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commission Section -->
+    <section class="commission-section">
+        <div class="container">
+            <h2 class="section-title">How Your Earnings Work</h2>
+            <div class="commission-content">
+                <div class="commission-text">
+                    <h3>Transparent Revenue Sharing</h3>
+                    <p>We believe in fair compensation for artists. For every poster sold featuring your artwork, you'll receive 40% of the sale price.</p>
+                    <p>Our pricing model ensures that both you and the company benefit from successful sales, creating a sustainable partnership.</p>
+                    <div class="commission-breakdown">
+                        <div class="breakdown-item">
+                            <span>Poster Sale Price:</span>
+                            <span>$30.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Your Commission (40%):</span>
+                            <span>$12.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Company Share (60%):</span>
+                            <span>$18.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Your Earnings per Sale:</span>
+                            <span>$12.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="commission-visual">
+                    <h3>Commission Calculator</h3>
+                    <p>See how much you could earn based on your sales:</p>
+                    <div class="form-group">
+                        <label for="sales">Number of Posters Sold:</label>
+                        <input type="number" id="sales" class="form-control" min="0" value="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="earnings">Your Estimated Earnings:</label>
+                        <input type="text" id="earnings" class="form-control" value="$120.00" readonly>
+                    </div>
+                    <p><small>Based on an average poster price of $30.00</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Apply & Get Approved</h3>
+                    <p>Submit your portfolio for review. We welcome artists of all styles and experience levels.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Upload Your Artwork</h3>
+                    <p>Once approved, upload your high-quality digital artwork through our artist portal.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>We Handle the Rest</h3>
+                    <p>We take care of printing, marketing, sales, and customer service for your designs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Get Paid Monthly</h3>
+                    <p>Receive your 40% commission through direct deposit at the end of each month.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opportunities Section -->
+    <section class="opportunities-section">
+        <div class="container">
+            <h2 class="section-title">Exclusive Opportunities</h2>
+            <div class="opportunity-cards">
+                <div class="opportunity-card">
+                    <h3>Featured Artist Program</h3>
+                    <p>Top-selling artists get featured in our newsletter, social media, and homepage, increasing visibility and sales.</p>
+                </div>
+                <div class="opportunity-card">
+                    <h3>Commissioned Work</h3>
+                    <p>Get approached for custom projects and collaborations with brands, earning additional income.</p>
+                </div>
+                <div class="opportunity-card">
+                    <h3>Personal Work Opportunities</h3>
+                    <p>With owner agreement, artists can take on personal commissions through our platform while maintaining our brand standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section id="application" class="form-section">
+        <div class="container">
+            <h2 class="section-title">Join Our Artist Community</h2>
+            <div class="application-form">
+                <form id="artistApplication">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="portfolio">Portfolio Link</label>
+                        <input type="url" id="portfolio" class="form-control" placeholder="Website, Instagram, Behance, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="artStyle">Art Style/Medium</label>
+                        <input type="text" id="artStyle" class="form-control" placeholder="e.g., Digital Illustration, Watercolor, Abstract" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Artistic Experience</label>
+                        <textarea id="experience" class="form-control" placeholder="Tell us about your background and artistic journey..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="whyJoin">Why do you want to join our artist community?</label>
+                        <textarea id="whyJoin" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 Poster Shop. All rights reserved.</p>
+            <p>Questions? Email us at artists@postershop.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Commission Calculator
+        document.getElementById('sales').addEventListener('input', function() {
+            const sales = parseInt(this.value) || 0;
+            const earnings = sales * 12; // $12 per sale (40% of $30)
+            document.getElementById('earnings').value = '$' + earnings.toFixed(2);
+        });
+
+        // Form Submission
+        document.getElementById('artistApplication').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your application! We will review your portfolio and get back to you within 5-7 business days.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
